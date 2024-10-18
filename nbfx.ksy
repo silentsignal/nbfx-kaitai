@@ -96,6 +96,14 @@ types:
             0x82: one_text
             0x88: int8_text
             0x89: int8_text
+            0x8a: int16_text
+            0x8b: int16_text
+            0x8c: int32_text
+            0x8d: int32_text
+            0x90: float_text
+            0x91: float_text
+            0x92: double_text
+            0x93: double_text
             0x98: chars8_text
             0x99: chars8_text
             0xaa: dictionary_text
@@ -157,6 +165,22 @@ types:
     seq:
       - id: value
         type: u1
+  int16_text:
+    seq:
+      - id: value
+        type: u2
+  int32_text:
+    seq:
+      - id: value
+        type: u4
+  float_text:
+    seq:
+      - id: value
+        type: u4
+  double_text:
+    seq:
+      - id: value
+        type: u8
   multi_byte_int31: # https://formats.kaitai.io/vlq_base128_be/
     seq:
       - id: multibytes
@@ -201,6 +225,3 @@ types:
     seq:
       - id: value
         type: u1
-
-
-
