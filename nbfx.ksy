@@ -90,6 +90,8 @@ types:
             0x55: prefix_dictionary_element
             0x56: prefix_dictionary_element
             0x82: one_text
+            0x98: chars8_text
+            0x99: chars8_text
             0xaa: dictionary_text
             0xab: dictionary_text
             0xac: uniqueid_text
@@ -101,12 +103,12 @@ types:
         type: multi_byte_int31
       # - id: value
       #   type: record
-  some_text:
+  chars8_text:
     seq:
-      - id: type
+      - id: length
         type: u1
-      - id: text_value
-        type: record
+      - id: bytes
+        size: length
   one_text: {}
   prefix_attribute:
     seq:
@@ -158,4 +160,3 @@ types:
     seq:
       - id: value
         type: u1
-
