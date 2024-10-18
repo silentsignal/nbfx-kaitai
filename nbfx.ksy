@@ -15,6 +15,7 @@ types:
         type:
           switch-on: rec_type
           cases:
+            0x01: end_element
             #0x06: short_dictionary_attribute
             0x0b: dictionary_xmls_attribute
             0x0c: prefix_dictionary_attribute
@@ -88,9 +89,11 @@ types:
             0x54: prefix_dictionary_element
             0x55: prefix_dictionary_element
             0x56: prefix_dictionary_element
-            0x82: one_text # no body
+            0x82: one_text
             0xaa: dictionary_text
             0xab: dictionary_text
+            0xac: uniqueid_text
+            0xad: uniqueid_text
             #_: unknown_byte
   prefix_dictionary_attribute:
     seq:
@@ -138,6 +141,11 @@ types:
         type: u2
       - id: value
         type: multi_byte_int31
+  uniqueid_text:
+    seq:
+      - id: uuid
+        size: 16
+  end_element: {}
   nbfx_string:
     seq:
       - id: str_len
@@ -150,6 +158,4 @@ types:
     seq:
       - id: value
         type: u1
-
-
 
