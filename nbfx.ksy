@@ -3,10 +3,24 @@ meta:
   file-extension: nbfx
   endian: le
 seq:
+  - id: dictionary_table
+    type: dictionary_table
   - id: records
     type: record
     repeat: eos
 types:
+  dictionary_table:
+    seq:
+      - id: size
+        type: multi_byte_int31
+      - id: entries
+        type: dictionary_entries
+        size: size.value
+  dictionary_entries:
+    seq:
+      - id: entryx
+        type: nbfx_string
+        repeat: eos
   record:
     seq:
       - id: rec_type
@@ -192,10 +206,10 @@ types:
         value: multibytes.size - 1
       value:
         value: |
-          (multibytes[last].value
-          + (last >= 1 ? (multibytes[last - 1].value << 7) : 0)
-          + (last >= 2 ? (multibytes[last - 2].value << 14) : 0)
-          + (last >= 3 ? (multibytes[last - 3].value << 21) : 0)).as<u4>
+          (multibytes[0].value
+          | (last >= 1 ? (multibytes[1].value << 7) : 0)
+          | (last >= 2 ? (multibytes[2].value << 14) : 0)
+          | (last >= 3 ? (multibytes[3].value << 21) : 0)).as<u4>
   multibyte:
     seq:
       - id: has_next
@@ -225,3 +239,4 @@ types:
     seq:
       - id: value
         type: u1
+
