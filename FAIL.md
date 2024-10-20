@@ -1,0 +1,5 @@
+- Dictionary tables can be parsed as Record streams mostly without problems (see: printable ASCII as Record Type)
+  - Fixing this last minute was easy at Kaitai level but opened up a can of brain-eating spaceworms during serialization, because
+  - size parameters must be manually adjusted to preserve internal consistency, and
+  - apparently it's not trivial in Python to update objects in place
+  - as a result cascading errors occurred because of length mismatches that was traced back to a single function that tried to update a size field in-place instead of creating and returning a new instance
