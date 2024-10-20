@@ -18,7 +18,7 @@ types:
         size: size.value
   dictionary_entries:
     seq:
-      - id: entryx
+      - id: entry
         type: nbfx_string
         repeat: eos
   record:
@@ -120,6 +120,10 @@ types:
             0x93: double_text
             0x98: chars8_text
             0x99: chars8_text
+            0x9a: chars16_text
+            0x9b: chars16_text
+            0x9c: chars32_text
+            0x9d: chars32_text
             0xaa: dictionary_text
             0xab: dictionary_text
             0xac: uniqueid_text
@@ -135,7 +139,25 @@ types:
     seq:
       - id: length
         type: u1
-      - id: bytes
+      - id: string
+        type: str
+        encoding: UTF-8
+        size: length
+  chars16_text:
+    seq:
+      - id: length
+        type: u2
+      - id: string
+        type: str
+        encoding: UTF-8
+        size: length
+  chars32_text:
+    seq:
+      - id: length
+        type: u4
+      - id: string
+        type: str
+        encoding: UTF-8
         size: length
   one_text: {}
   prefix_attribute:
@@ -234,7 +256,7 @@ types:
       - id: str
         type: str
         size: str_len.value
-        encoding: ascii
+        encoding: ASCII
   unknown_byte:
     seq:
       - id: value
