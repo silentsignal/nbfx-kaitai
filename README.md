@@ -1,4 +1,4 @@
-MS-NBFX Kaitai Struct Definition
+MC-NBFX Kaitai Struct Definition
 ================================
 
 Still incomplete
